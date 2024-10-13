@@ -116,8 +116,6 @@ const menuItems = [
   },
 ];
 
-import React from 'react'
-
 const Menu = () => {
   return (
     <div className='mt-4 text-sm'> {/* This will iterative thought the MenuItem and create HTML for each index */}
