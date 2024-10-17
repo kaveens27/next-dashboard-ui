@@ -18,9 +18,6 @@ const BigCalendar = () => {
 
     return(
     <div className='bg-white w-full h-full p-4 rounded-lg flex flex-col gap-4'>
-        <div className='flex p-4'>
-            <h1 className='font-semibold text-lg'>Schedule (4A)</h1>
-        </div>
         <Calendar
             localizer={localizer}
             events={calendarEvents}

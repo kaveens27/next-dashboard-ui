@@ -20,7 +20,7 @@ export default function DashboardLayout({
           </Link>
           <Menu/> {/* display the menu component on the sidebar */}
         </div>
-        <div className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] bg-[#F7F8FA] overflow-scroll"> {/*Right side div*/}
+        <div className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] bg-[#F7F8FA] overflow-scroll flex flex-col"> {/*Right side div*/}
           <Navbar/>
           {children}
         </div>
