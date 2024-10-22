@@ -61,8 +61,8 @@ type Teacher = {
 
 
 const TeacherListPage = () => {
-  {/* Component for rendering teacher table row data */}
-  const renderRow = (item:Teacher) => {
+  {/* Component for specifically rendering teacher table row data */}
+  const renderRow = (item:Teacher) => { //this has (item:Teacher) as it says the type of data in the component is of structure Teacher
     return (
     <tr key={item.id} className='border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-ImportedPurpleLight '>
       {/* Dynamic Rows */}
@@ -111,14 +111,14 @@ const TeacherListPage = () => {
             <button className='w-8 h-8 flex items-center justify-center rounded-full bg-ImportedYellow p-2'>
               <Image src='/sort.png' alt='sort icon' width={20} height={20}/>
             </button>
-            <button className='w-8 h-8 flex items-center justify-center rounded-full bg-ImportedYellow p-2'>
+            {role === 'admin' && <button className='w-8 h-8 flex items-center justify-center rounded-full bg-ImportedYellow p-2'>
               <Image src='/plus.png' alt='plus icon' width={20} height={20}/>
-            </button>
+            </button>}
           </div>
         </div>
       </div>
       {/* LIST SECTION */}
-      <Table columnData={headerColumnData} renderRow={renderRow} roleData={teachersData}/> {/* propname:{data} */}
+      <Table headerData={headerColumnData} renderRow={renderRow} rowData={teachersData}/> {/* propname:{data} */}
       {/* PAGINATION SECTION */}
       <Pagination/>
     </div>
