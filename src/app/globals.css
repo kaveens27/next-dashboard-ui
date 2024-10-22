@@ -26,7 +26,7 @@
 /* Big Calender */
 
 
-.rbc-btn-group:first-child { /* You can use :first-child to get rid of the first compoenet that uses this name if multiple components use the same class name */
+.rbc-btn-group:first-child { /* You can use :first-child to get rid of the first component that uses this name if multiple components use the same class name */
     display: none !important;
   }
   
@@ -35,7 +35,7 @@
     padding: 0px 20px !important;
   }
   
-  .rbc-btn-group:last-child { /* You can use :last-child button get the button elements in that class for the last conpoenent with the same classname */
+  .rbc-btn-group:last-child { /* You can use :last-child button get the button elements in that class for the last component with the same classname */
     font-size: 13px !important;
   }
   
