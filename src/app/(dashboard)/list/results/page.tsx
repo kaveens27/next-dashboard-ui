@@ -1,72 +1,82 @@
 import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
 import TableSearch from '@/components/TableSearch';
-import { parentsData, role } from '@/lib/data';
+import { assignmentsData, examsData, resultsData, role } from '@/lib/data';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 
 
-{/* Header data for the tables headers */}
+{/* 1. Header data for the tables headers */}
 
 const headerColumnData = [
     {
-      header: "Info",
-      accessor: "info"
+        header: "Subject",
+        accessor: "subject"
     },
     {
-      header: "Student Names",
-      accessor: "studentNames",
-      className: "hidden md:table-cell"
+        header: "Student",
+        accessor: "student",
     },
     {
-      header: "Phone",
-      accessor: "phone",
-      className: "hidden lg:table-cell" //normally hidden, but shown as table cell for large screens only
+        header: "Score",
+        accessor: "score",
+        className: "hidden md:table-cell"
     },
     {
-      header: "Address",
-      accessor: "address",
-      className: "hidden lg:table-cell" //normally hidden, but shown as table cell for large screens only
+        header: "Teacher",
+        accessor: "teacher",
+        className: "hidden md:table-cell"
     },
     {
-      header: "Actions",
-      accessor: "actions"
+        header: "Class",
+        accessor: "class",
+        className: "hidden md:table-cell"
     },
-  ]
+    {
+        header: "Date",
+        accessor: "Date",
+        className: "hidden md:table-cell"
+    },
+    {
+        header: "Actions",
+        accessor: "actions"
+    },
+]
 
 
-{/* Creating a new type called Student that has the types/structure of data found on each row of the Student table */}
+{/* 2. Creating a new type called Student that has the types/structure of data found on each row of the Student table (names from actual data) */}
 
-type Parent = {
+type Result = {
     id:number;
-    name: string;
-    email?:string;
-    students: string[];
-    phone:string;
-    address:string;
+    subject:string;
+    class: string;
+    teacher:string;
+    student:string;
+    date:string;
+    score:number;
+    type:"exam"|"assignment";
   }
 
 
+{/* 3. Create the function via the Table component */}
 
-const StudentListPage = () => {
-    const renderRow = (item:Parent) => { //this has (item:Teacher) as it says the type of data in the component is of structure Teacher
+
+const ResultsListPage = () => {
+    const renderRow = (item:Result) => { //this has (item:Teacher) as it says the type of data in the component is of structure Teacher
         return (
-        <tr key={item.id} className='border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-ImportedPurpleLight '>
+        <tr key={item.id} className='p-4 border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-ImportedPurpleLight'>
           {/* Dynamic Rows */}
-          <td className='flex items-center gap-4 p-4'>
-            <div className='flex flex-col'>
-              <h3 className='font-semibold'>{item.name}</h3>
-              <p className='text-xs text-gray-500'>{item?.email}</p>
-            </div>
-          </td>
-          <td className='hidden md:table-cell'>{item.students.join(",")}</td>
-          <td className='hidden md:table-cell'>{item.phone}</td>
-          <td className='hidden md:table-cell'>{item.address}</td>
+          <td className='flex items-center gap-4 p-4'>{item.subject}</td>
+          <td className=''>{item.student}</td>
+          <td className='hidden md:table-cell'>{item.score}</td>
+          <td className='hidden md:table-cell'>{item.teacher}</td>
+          <td className='hidden md:table-cell'>{item.class}</td>
+          <td className='hidden md:table-cell'>{item.date}</td>
           <td>
             <div className='flex items-center gap-2'>
               {/* Link Button */}
-              <Link href={`/list/students/${item.id}`}>
+              <Link href={`/list/classes/${item.id}`}>
                 <button className='w-7 h-7 flex items-center justify-center rounded-full bg-ImportedSky'>
                   <Image src={"/edit.png"} alt='' width={16} height={16}/>
                 </button>
@@ -86,7 +96,7 @@ const StudentListPage = () => {
         <div className='bg-white p-4 rounded-md flex-1 m-4 mt-0'>
           {/* TOP SECTION  */}
           <div className='flex items-center justify-between'>
-            <h1 className='hidden md:block text-lg font-semibold'>All Parents</h1>
+            <h1 className='hidden md:block text-lg font-semibold'>All Results</h1>
             <div className='flex flex-col w-full md:flex-row md:w-auto items-center gap-4'> 
               <TableSearch/>
               <div className='flex w-full items-center justify-end gap-4'>
@@ -103,11 +113,11 @@ const StudentListPage = () => {
             </div>
           </div>
           {/* LIST SECTION */}
-          <Table headerData={headerColumnData} renderRow={renderRow} rowData={parentsData}/> {/* propname:{data} */}
+          <Table headerData={headerColumnData} renderRow={renderRow} rowData={resultsData}/> {/* propname:{data} */}
           {/* PAGINATION SECTION */}
           <Pagination/>
         </div>
       )
 }
 
-export default StudentListPage
+export default ResultsListPage
