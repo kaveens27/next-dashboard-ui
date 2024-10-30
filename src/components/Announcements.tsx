@@ -48,3 +48,5 @@ export const Announcements = () => {
     </div>
   )
 }
+
+export default Announcements
