@@ -1,5 +1,4 @@
 import React from 'react'
-import { render } from 'react-dom';
 
 {/* Define the structure of the Columns Object */}
 
@@ -10,7 +9,7 @@ type ColumnStructure = {
   };
 
 
-const Table = ({headerData, renderRow, rowData}:{headerData:ColumnStructure[]; renderRow:(item:any)=>React.ReactNode; rowData:any[]}) => { //{propData}:{propData:newDataStructure} OR {propData:(item:any) OR {propData:any[]} IMPORTANT : this defines type of the prop the component receives ie this prop receives headerColumn data where headerColumn data is of type ColumnStructure
+const Table = ({headerData, renderRow, rowData}:{headerData:ColumnStructure[]; renderRow:(item:any)=>React.ReactNode; rowData:any[]}) => {//{propData}:{propData:newDataStructure} OR {propData:(item:any) OR {propData:any[]} IMPORTANT : this defines type of the prop the component receives ie this prop receives headerColumn data where headerColumn data is of type ColumnStructure
   return (
     <table className='w-full mt-4'>
         {/* HEADER DATA */}

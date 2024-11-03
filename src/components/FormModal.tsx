@@ -9,6 +9,7 @@ import React, { useState } from 'react'
 // import TeacherForm from './Forms/TeacherForm'; //optimise the forms by using next/dynamic to load when needed instead of when the page loads
 // import StudentForm from './Forms/StudentForm'; //optimise the forms by using next/dynamic to load when needed instead of when the page loads
 import dynamic from 'next/dynamic';
+import AttendanceForm from './Forms/AttendanceForm';
 
 
 //STEP 5
@@ -18,6 +19,33 @@ const TeacherForm = dynamic(() => import("./Forms/TeacherForm"), {
     loading: () => <h1>Loading...</h1>
 })
 const StudentForm = dynamic(() => import("./Forms/StudentForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const AnnouncementForm = dynamic(() => import("./Forms/AnnouncementForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const AssignmentForm = dynamic(() => import("./Forms/AssignmentForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const ClassForm = dynamic(() => import("./Forms/ClassForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const EventForm = dynamic(() => import("./Forms/EventForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const ExamForm = dynamic(() => import("./Forms/ExamForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const LessonForm = dynamic(() => import("./Forms/LessonForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const ParentForm = dynamic(() => import("./Forms/ParentForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const ResultForm = dynamic(() => import("./Forms/ResultForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const SubjectForm = dynamic(() => import("./Forms/SubjectForm"), {
     loading: () => <h1>Loading...</h1>
 })
 
@@ -37,7 +65,16 @@ type FormObject = {
 } 
 const forms:FormObject = {
   teacher: (type, data) => <TeacherForm type={type} data={data}/>, //teacher key takes type & data as method inputs and creates the teacher form (JSX element)
-  student: (type, data) => <StudentForm type={type} data={data}/>  //student key takes type & data as method inputs and creates the teacher form (JXS element)
+  student: (type, data) => <StudentForm type={type} data={data}/>,  //student key takes type & data as method inputs and creates the teacher form (JXS element)
+  announcement: (type, data) => <AnnouncementForm type={type} data={data}/>,
+  assignment: (type, data) => <AssignmentForm type={type} data={data}/>,
+  attendance: (type, data) => <AttendanceForm type={type} data={data}/>,
+  class: (type, data) => <ClassForm type={type} data={data}/>,
+  event: (type, data) => <EventForm type={type} data={data}/>,
+  lesson: (type, data) => <LessonForm type={type} data={data}/>,
+  parent: (type, data) => <ParentForm type={type} data={data}/>,
+  result: (type, data) => <ResultForm type={type} data={data}/>,
+  subject: (type, data) => <SubjectForm type={type} data={data}/>
 };
 
 
