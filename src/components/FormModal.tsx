@@ -6,11 +6,43 @@
 
 import Image from 'next/image';
 import React, { useState } from 'react'
-import TeacherForm from './Forms/TeacherForm';
+// import TeacherForm from './Forms/TeacherForm'; //optimise the forms by using next/dynamic to load when needed instead of when the page loads
+// import StudentForm from './Forms/StudentForm'; //optimise the forms by using next/dynamic to load when needed instead of when the page loads
+import dynamic from 'next/dynamic';
 
 
-// STEP 1
-// create the formModalProps type that will go into the FormModal comp
+//STEP 5
+// use dynamic loading of forms to increase optimization and code splitting rather than loading everything as soon as the page loads
+// LAZY LOADING
+const TeacherForm = dynamic(() => import("./Forms/TeacherForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+const StudentForm = dynamic(() => import("./Forms/StudentForm"), {
+    loading: () => <h1>Loading...</h1>
+})
+
+
+// STEP 4
+// create the type definition for the FormObject (what the types are for the form
+// then create the form using the FormObject
+// ---creating an object type definition (below)---
+// type ObjectType = {
+//     [key:type]:(input1:type, input2:typeof,...) => output:type
+// }
+// ---creating object (below)---
+// const objectName:ObjectType = {
+//    key: (functionInputs) => function;
+type FormObject = {
+  [key: string]: (type: "create" | "update", data?: any) => JSX.Element; //type def: string key takes tpye "create" or "update" & data and outputs a JSX componeney (seen below)
+} 
+const forms:FormObject = {
+  teacher: (type, data) => <TeacherForm type={type} data={data}/>, //teacher key takes type & data as method inputs and creates the teacher form (JSX element)
+  student: (type, data) => <StudentForm type={type} data={data}/>  //student key takes type & data as method inputs and creates the teacher form (JXS element)
+};
+
+
+// STEP 1:
+// create the formModalProps type definition that will go into the FormModal comp
 type FormModalProps = {
     table: "teacher" | "student" | "parent" | "subject" | "class" | "lesson" | "exam" | "assignment" | "result" | "attendance" | "event" | "announcement";
     type: "create" | "update" | "delete";
@@ -33,7 +65,7 @@ const FormModal = ({table,type,data,id}:FormModalProps) => {
                 <span className='text-center font-medium'>All data will be lost. Are you sure you want to delete this {table}?</span>
                 <button className='bg-red-600 text-white py-2 px-4 rounded-md border-none w-max self-center'>Delete</button>
             </form>
-        ) : <TeacherForm type='update' data={data}/>
+        ) : type === 'create' || type === 'update' ? forms[table](type,data) : "Form not found!" //if form type if 'create' or 'update; it will take the table name (eg teacher, student) and look for it on the form object and insert the type and data into the method found on the object to return the JSX element (eg TeacherForm)
     }
 
     // STEP 3

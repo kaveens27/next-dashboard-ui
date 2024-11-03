@@ -2,7 +2,7 @@
 // this uses the InputFields comp
 // Form Modal comp uses this comp to render comp when the user is on a teacher page
 
-'use client' 
+'use client'
 
 import React from 'react'
 import { FieldError, useForm } from 'react-hook-form';
@@ -34,14 +34,14 @@ type Inputs = z.infer<typeof schema> //form inputs will take schema types
 
 // STEP 1
 // create rafce and add all prop data into component function and type format
-type TeacherFormProps = {
+type StudentFormProps = {
     type: 'create' | 'update';
     data?: any;
   };
 
 
 // START
-const TeacherForm = ({type,data}:TeacherFormProps) => {
+const StudentForm = ({type,data}:StudentFormProps) => {
 
     // STEP 3
     // add this section from the react-resolver docs to deal with form validation
@@ -58,7 +58,7 @@ const TeacherForm = ({type,data}:TeacherFormProps) => {
     // create the form modal component using InputField component
     return (
         <form className='flex flex-col p-4 gap-4' onSubmit={onSubmit}>
-            <h1 className='text-xl font-semibold mb-4'>{type ==='create' ? "Create A New Teacher" : "Update A Teacher" }</h1>
+            <h1 className='text-xl font-semibold mb-4'>{type ==='create' ? "Create A New Student" : "Update A Student" }</h1>
             <span className='text-xs text-gray-500 font-medium'>Authentication Information</span>
             <div className='flex justify-between flex-wrap gap-4 mb-4'>
                 <InputField label='Username' name='username' register={register} error={errors?.username} defaultValue={data?.username}/>
@@ -92,4 +92,4 @@ const TeacherForm = ({type,data}:TeacherFormProps) => {
     )
 }
 
-export default TeacherForm
+export default StudentForm

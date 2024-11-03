@@ -117,7 +117,7 @@ const TeacherListPage = () => {
               // <button className='w-8 h-8 flex items-center justify-center rounded-full bg-ImportedYellow p-2'>
               //   <Image src='/plus.png' alt='plus icon' width={20} height={20}/>
               // </button>
-              <FormModal table="announcement" type='create'/>
+              <FormModal table="teacher" type='create'/>
           )}
           </div>
         </div>

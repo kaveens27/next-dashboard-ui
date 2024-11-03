@@ -1,5 +1,7 @@
 import Announcements from "@/components/Announcements";
 import BigCalendar from "@/components/BigCalendar";
+import FormModal from "@/components/FormModal";
+import StudentForm from "@/components/Forms/StudentForm";
 import PerformanceChart from "@/components/PerformanceChart";
 import { role } from "@/lib/data";
 import Image from "next/image";
@@ -24,14 +26,18 @@ const SingleTeacherPage = () => {
               />
             </div>
             <div className="w-2/3 flex flex-col justify-between gap-4">
-              <p className="text-sm text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              </p>
-              <div className="flex items-center justify-between gap-2 flex-wrap text-xs font-medium">
-                <div className="w-full md:w-1/3 lg:w-full 2xl:w-1/3 flex items-center gap-2">
-                  <Image src="/blood.png" alt="" width={14} height={14} />
-                  <span>A+</span>
+                <div className="flex items-center justify-between">
+                    <h1 className="text-xl font-semibold">Sarah Smith</h1>
+                    <FormModal table='student' type='update' data={{id:'3',username:"John", email:'john@example.com',password:'123',firstName:'John', lastName:'Snyder',phone:'0123456789', address:'addressplaceholder',bloodType:'A+',birthday:'01/01/2020',gender:'female'}}/>
                 </div>
+                <p className="text-sm text-gray-500">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                </p>
+                <div className="flex items-center justify-between gap-2 flex-wrap text-xs font-medium">
+                    <div className="w-full md:w-1/3 lg:w-full 2xl:w-1/3 flex items-center gap-2">
+                        <Image src="/blood.png" alt="" width={14} height={14} />
+                        <span>A+</span>
+                    </div>
                 <div className="w-full md:w-1/3 lg:w-full 2xl:w-1/3 flex items-center gap-2">
                   <Image src="/date.png" alt="" width={14} height={14} />
                   <span>January 2025</span>
